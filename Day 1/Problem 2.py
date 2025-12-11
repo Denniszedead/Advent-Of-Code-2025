@@ -18,7 +18,7 @@ def read_rotations_from_file(filename):
 
     return result
 
-def createCircularLinkedList(no_list):
+def create_circular_linked_list(no_list):
     first_node = DualLinkedListNode(None, 0, None)
     prev_node = first_node
     new_node = None
@@ -34,7 +34,7 @@ def createCircularLinkedList(no_list):
 
     return first_node
 
-def refToFifty(circular_linked_list):
+def ref_to_fifty(circular_linked_list):
     ref = circular_linked_list
 
     while ref.index != 50:
@@ -44,8 +44,8 @@ def refToFifty(circular_linked_list):
 
 def get_password(rotations):
     password = 0
-    circular_linked_list = createCircularLinkedList(100)
-    ref = refToFifty(circular_linked_list)
+    circular_linked_list = create_circular_linked_list(100)
+    ref = ref_to_fifty(circular_linked_list)
 
     for rotation in rotations:
         [turn_direction, no_steps] =  extract_rotation(rotation)
