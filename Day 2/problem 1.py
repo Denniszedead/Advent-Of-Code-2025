@@ -34,7 +34,6 @@ def is_invalid_id(number):
 
     return first_half == second_half
 
-
 def breakdown_range(range_str):
     indexes = range_str.split('-')
 
