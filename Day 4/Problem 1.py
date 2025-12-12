@@ -27,7 +27,7 @@ def get_neighbours(node, matrix):
                 continue
             if not (selected_row == cur_row_no and selected_col == cur_col_no):
                 if matrix[selected_row][selected_col] == '@':
-                    neighbours.append([selected_row, selected_col])
+                    neighbours.append((selected_row, selected_col))
 
     return neighbours
 
