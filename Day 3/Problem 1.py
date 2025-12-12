@@ -17,6 +17,7 @@ def find_largest_joultage(bank):
         if bank[i] > bank[largest_battery_index]:
             largest_battery_index = i
 
+    # the second index starts after the largest index
     second_largest_battery_index = largest_battery_index + 1
     for i in range(second_largest_battery_index, len(bank)):
         if bank[i] > bank[second_largest_battery_index]:
