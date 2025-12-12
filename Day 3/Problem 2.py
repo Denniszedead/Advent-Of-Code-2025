@@ -24,8 +24,10 @@ def find_largest_joultage(bank, digit_len):
     digit_str = ''
     largest_digit_index = 0
 
+    # -1 for the window_len as from the selected index how many digits are behind
     for window_len in range(digit_len - 1, -1, -1):
         end_index = len(bank) - window_len
+
         for index in range(largest_digit_index, end_index):
             if bank[index] > bank[largest_digit_index]:
                 largest_digit_index = index
