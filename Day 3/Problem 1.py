@@ -1,5 +1,5 @@
 def extract_banks_from_file(filename):
-    arrayStr = '';
+    arrayStr = ''
 
     with open(filename) as f:
         for line in f:
