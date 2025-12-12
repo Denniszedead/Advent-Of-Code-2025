@@ -43,7 +43,7 @@ def extract_matrix_from_file(filename):
     return result
 
 def main():
-    roll_matrix = extract_matrix_from_file('inputs/sample.txt')
+    roll_matrix = extract_matrix_from_file('inputs/input.txt')
     adjacency_list = get_adjacency_list(roll_matrix)
 
     no_rolls_can_remove = 0
