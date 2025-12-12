@@ -1,5 +1,11 @@
 def extract_banks_from_file(filename):
-    return []
+    banks = []
+
+    with open(filename, mode='r', encoding="utf-8") as file:
+        for line in file:
+            banks.append(line)
+
+    return banks
 
 def find_largest_joultage(bank):
     return 0
