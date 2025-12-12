@@ -29,7 +29,7 @@ def find_largest_joultage(bank):
 
 
 def main():
-    banks = extract_banks_from_file('input/sample.txt')
+    banks = extract_banks_from_file('input/input.txt')
 
     total_joultage = 0
 
