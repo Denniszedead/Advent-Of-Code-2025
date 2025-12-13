@@ -25,6 +25,19 @@ def get_ranges(range_list):
 
     return acceptable_range
 
+def get_new_range(last_range, selected_range):
+    if selected_range[0] <= last_range[0]:
+        new_start = selected_range[0]
+    else:
+        new_start = last_range[0]
+
+    if selected_range[1] >= last_range[1]:
+        new_end = selected_range[1]
+    else:
+        new_end = last_range[1]
+
+    return new_start, new_end
+
 def clear_overlapping_ranges(ranges):
     new_ranges = [ranges[0]]
     is_changed = False
@@ -35,17 +48,7 @@ def clear_overlapping_ranges(ranges):
         if last_range[1] < selected_range[0]:
             new_ranges.append(selected_range)
         else:
-            if selected_range[0] <= last_range[0]:
-                new_start = selected_range[0]
-            else:
-                new_start = last_range[0]
-
-            if selected_range[1] >= last_range[1]:
-                new_end = selected_range[1]
-            else:
-                new_end = last_range[1]
-
-            new_ranges[-1] = (new_start, new_end)
+            new_ranges[-1] = get_new_range(last_range, selected_range)
             is_changed = True
 
     new_ranges.sort(key=lambda x: x[0])
