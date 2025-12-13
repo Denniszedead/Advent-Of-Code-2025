@@ -32,7 +32,7 @@ def get_ranges(range_list):
 
 
 def main():
-    acceptable_ranges, ingredient_list = get_range_of_fresh_ids_and_list_of_ingredients('input/sample.txt')
+    acceptable_ranges, ingredient_list = get_range_of_fresh_ids_and_list_of_ingredients('input/input.txt')
 
     no_acceptable_ingredients = 0
 
