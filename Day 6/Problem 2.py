@@ -8,12 +8,25 @@ def get_problems_by_filename(filename):
     with open(filename, mode='r', encoding='utf-8') as file:
         for line in file:
             str = line.strip()
-            line_arr = str.split()
+            line_arr = split_numbers(str)
             arr.append(line_arr)
 
     transpose_arr = np.transpose(arr)
 
     return transpose_arr
+
+def split_numbers(str):
+    result = []
+    num_str = ''
+
+    for index, x in enumerate(str):
+        if len(num_str) == 3:
+            result.append(num_str)
+            num_str = ''
+        else:
+            num_str += x
+
+    return result
 
 def solve_problem(problem):
     numbers = problem[:-1]
@@ -27,7 +40,7 @@ def solve_problem(problem):
     return ans
 
 def main():
-    problems = get_problems_by_filename('input/input.txt')
+    problems = get_problems_by_filename('input/sample.txt')
 
     grand_total = 0
 
