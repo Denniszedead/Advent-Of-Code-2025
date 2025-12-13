@@ -55,8 +55,6 @@ def clear_overlapping_ranges(ranges):
     else:
         return new_ranges
 
-
-
 def main():
     acceptable_ranges = get_ranges_from_file('input/input.txt')
     acceptable_ranges = clear_overlapping_ranges(acceptable_ranges)
