@@ -32,8 +32,9 @@ def extract_problems_from_array(arr):
     no_cols = find_greatest_col(arr)
     last_row = no_rows - 1
 
-    # Pad last row (the operands) as will cause error in the for loop when checking for the last row
-    arr[-1] = pad_last_row(no_cols, arr[-1])
+    # Pad rows so that all rows are in the same no of cols
+    for i in range(len(arr)):
+        arr[i] = pad_last_row(no_cols, arr[i])
 
     num_str = ''
     problem = []
