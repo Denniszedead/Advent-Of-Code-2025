@@ -7,26 +7,37 @@ def get_problems_by_filename(filename):
 
     with open(filename, mode='r', encoding='utf-8') as file:
         for line in file:
-            str = line.strip()
-            line_arr = split_numbers(str)
-            arr.append(line_arr)
+            str = line.strip('\n')
+            arr.append(str)
 
-    transpose_arr = np.transpose(arr)
+    return extract_problems_from_array(arr)
 
-    return transpose_arr
+def extract_problems_from_array(arr):
+    problems = []
+    no_rows = len(arr)
+    no_cols = len(arr[0])
+    last_row = no_rows - 1
 
-def split_numbers(str):
-    result = []
     num_str = ''
+    problem = []
+    for j in range(no_cols - 1, -1, -1):
+        for i in range(no_rows):
+            if i == last_row:
+                if num_str.strip() == '' and arr[i][j] == ' ':
+                    num_str = ''
+                    problem = []
+                    continue
+                num = int(num_str.strip())
+                problem.append(num)
+                num_str = ''
+                if arr[i][j] == '+' or arr[i][j] == '*':
+                    problem.append(arr[i][j])
+                    problems.append(problem)
+                    problem = []
+            elif arr[i][j] != '':
+                num_str += arr[i][j]
 
-    for index, x in enumerate(str):
-        if len(num_str) == 3:
-            result.append(num_str)
-            num_str = ''
-        else:
-            num_str += x
-
-    return result
+    return problems
 
 def solve_problem(problem):
     numbers = problem[:-1]
