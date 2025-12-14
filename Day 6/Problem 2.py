@@ -52,7 +52,7 @@ def extract_problems_from_array(arr):
                     problem.append(arr[i][j])
                     problems.append(problem)
                     problem = []
-            elif arr[i][j] != '':
+            else:
                 num_str += arr[i][j]
 
     return problems
