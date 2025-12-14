@@ -12,11 +12,19 @@ def get_problems_by_filename(filename):
 
     return extract_problems_from_array(arr)
 
+def pad_last_row(intended_len, str):
+    diff = intended_len - len(str)
+    padding = ' ' * diff
+
+    return str + padding
+
 def extract_problems_from_array(arr):
     problems = []
     no_rows = len(arr)
     no_cols = len(arr[0])
     last_row = no_rows - 1
+
+    arr[-1] = pad_last_row(no_cols, arr[-1])
 
     num_str = ''
     problem = []
