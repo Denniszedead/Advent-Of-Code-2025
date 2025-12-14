@@ -24,6 +24,7 @@ def extract_problems_from_array(arr):
     no_cols = len(arr[0])
     last_row = no_rows - 1
 
+    # Pad last row (the operands) as will cause error in the for loop when checking for the last row
     arr[-1] = pad_last_row(no_cols, arr[-1])
 
     num_str = ''
