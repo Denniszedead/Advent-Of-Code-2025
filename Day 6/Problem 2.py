@@ -59,7 +59,7 @@ def solve_problem(problem):
     return ans
 
 def main():
-    problems = get_problems_by_filename('input/sample.txt')
+    problems = get_problems_by_filename('input/input.txt')
 
     grand_total = 0
 
