@@ -18,10 +18,18 @@ def pad_last_row(intended_len, str):
 
     return str + padding
 
+def find_greatest_col(arr):
+    greatest_no_col = 0
+    for row in arr:
+        if len(arr[row]) > greatest_no_col:
+            greatest_no_col = len(arr[row])
+
+    return greatest_no_col
+
 def extract_problems_from_array(arr):
     problems = []
     no_rows = len(arr)
-    no_cols = len(arr[0])
+    no_cols = find_greatest_col(arr)
     last_row = no_rows - 1
 
     # Pad last row (the operands) as will cause error in the for loop when checking for the last row
