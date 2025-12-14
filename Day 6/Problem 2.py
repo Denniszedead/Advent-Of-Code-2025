@@ -21,8 +21,8 @@ def pad_last_row(intended_len, str):
 def find_greatest_col(arr):
     greatest_no_col = 0
     for row in arr:
-        if len(arr[row]) > greatest_no_col:
-            greatest_no_col = len(arr[row])
+        if len(row) > greatest_no_col:
+            greatest_no_col = len(row)
 
     return greatest_no_col
 
