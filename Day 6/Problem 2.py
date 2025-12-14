@@ -41,6 +41,7 @@ def extract_problems_from_array(arr):
     for j in range(no_cols - 1, -1, -1):
         for i in range(no_rows):
             if i == last_row:
+                #if column is empty
                 if num_str.strip() == '' and arr[i][j] == ' ':
                     num_str = ''
                     problem = []
