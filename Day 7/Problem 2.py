@@ -1,3 +1,5 @@
+memo = {}
+
 def read_diagram_from_filename(filename):
     diagram = []
 
@@ -49,7 +51,7 @@ def get_no_paths_from_diagram(diagram):
 
 
 def main():
-    diagram = read_diagram_from_filename('input/input')
+    diagram = read_diagram_from_filename('input/sample')
     print(get_no_paths_from_diagram(diagram))
 
 
