@@ -49,7 +49,7 @@ def get_no_paths_from_diagram(diagram):
 
 
 def main():
-    diagram = read_diagram_from_filename('input/sample')
+    diagram = read_diagram_from_filename('input/input')
     print(get_no_paths_from_diagram(diagram))
 
 
