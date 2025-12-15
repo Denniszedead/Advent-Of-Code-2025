@@ -22,7 +22,6 @@ def get_no_paths_from_start_point_and_diagram(position_of_start_point, diagram):
     if pos_str in memo:
         return memo[pos_str]
 
-    ans = 0
     if row_no == last_row_no:
         ans = 1
     elif diagram[row_no][col_no] == '^':
