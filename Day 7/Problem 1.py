@@ -11,7 +11,6 @@ def read_diagram_from_filename(filename):
 
 def get_no_splits_from_start_point_and_diagram(position_of_start_point, diagram):
     no_rows = len(diagram)
-    no_cols = len(diagram[0])
 
     last_row_no = no_rows - 1
 
