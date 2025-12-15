@@ -17,20 +17,27 @@ def get_no_paths_from_start_point_and_diagram(position_of_start_point, diagram):
     last_row_no = no_rows - 1
 
     row_no, col_no = position_of_start_point
+    pos_str = ','.join([str(row_no), str(col_no)])
 
-    for i in range(row_no, no_rows):
-        if i == last_row_no:
-            return 1
-        elif diagram[i][col_no] == '^':
-            new_col_no_1 = col_no - 1
-            new_col_no_2 = col_no + 1
+    if pos_str in memo:
+        return memo[pos_str]
 
-            ans = 0
+    ans = 0
+    if row_no == last_row_no:
+        ans = 1
+    elif diagram[row_no][col_no] == '^':
+        new_col_no_1 = col_no - 1
+        new_col_no_2 = col_no + 1
 
-            ans += get_no_paths_from_start_point_and_diagram((i, new_col_no_1), diagram)
-            ans += get_no_paths_from_start_point_and_diagram((i, new_col_no_2), diagram)
+        ans = 0
 
-            return ans
+        ans += get_no_paths_from_start_point_and_diagram((row_no, new_col_no_1), diagram)
+        ans += get_no_paths_from_start_point_and_diagram((row_no, new_col_no_2), diagram)
+    else:
+        ans = get_no_paths_from_start_point_and_diagram((row_no + 1, col_no), diagram)
+
+    memo[pos_str] = ans
+    return ans
 
 
 def get_no_paths_from_diagram(diagram):
@@ -51,7 +58,7 @@ def get_no_paths_from_diagram(diagram):
 
 
 def main():
-    diagram = read_diagram_from_filename('input/sample')
+    diagram = read_diagram_from_filename('input/input')
     print(get_no_paths_from_diagram(diagram))
 
 
