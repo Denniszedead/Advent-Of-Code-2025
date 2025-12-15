@@ -25,11 +25,8 @@ def get_no_paths_from_start_point_and_diagram(position_of_start_point, diagram):
 
             ans = 0
 
-            if diagram[i][new_col_no_1] == '.':
-                ans += get_no_paths_from_start_point_and_diagram((i, new_col_no_1), diagram)
-
-            if diagram[i][new_col_no_2] == '.':
-                ans += get_no_paths_from_start_point_and_diagram((i, new_col_no_2), diagram)
+            ans += get_no_paths_from_start_point_and_diagram((i, new_col_no_1), diagram)
+            ans += get_no_paths_from_start_point_and_diagram((i, new_col_no_2), diagram)
 
             return ans
 
@@ -52,7 +49,7 @@ def get_no_paths_from_diagram(diagram):
 
 
 def main():
-    diagram = read_diagram_from_filename('input/input')
+    diagram = read_diagram_from_filename('input/sample')
     print(get_no_paths_from_diagram(diagram))
 
 
