@@ -36,8 +36,18 @@ def get_edge_lists(junction_boxes):
 
     return edge_list
 
+def check_which_point_close_the_junction_box(edge_list, junction_box):
+    no_vertexes = len(junction_box)
+    tree = []
+
+    for edge in edge_list:
+        index_1, index_2, weight = edge
+
+
+
+
 def main():
-    junction_boxes = get_junction_boxes('input/input')
+    junction_boxes = get_junction_boxes('input/sample')
     edge_lists = get_edge_lists(junction_boxes)
 
 if __name__ == "__main__":
