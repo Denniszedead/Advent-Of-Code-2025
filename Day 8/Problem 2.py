@@ -94,7 +94,7 @@ class UFDS:
 
 
 def main():
-    junction_boxes = get_junction_boxes('input/sample')
+    junction_boxes = get_junction_boxes('input/input')
     edge_list = get_edge_lists(junction_boxes)
     check_which_point_close_the_junction_box(edge_list, junction_boxes)
 
