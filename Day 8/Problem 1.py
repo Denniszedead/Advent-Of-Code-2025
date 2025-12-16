@@ -1,4 +1,6 @@
 import math
+from functools import reduce
+
 
 def get_junction_boxes(filename):
     junction_boxes = []
@@ -85,10 +87,26 @@ def find_connected_components(adjacency_matrix):
     return components
 
 
+def find_answer_based_on_components(components):
+    components.sort(key=lambda xs: len(xs), reverse=True)
+    three_largest_components = components[:3]
+
+    ans = 1
+
+    for component in three_largest_components:
+        no_vertex = len(component)
+        ans *= no_vertex
+
+    return ans
+
+
 def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
    distance_matrix = get_distance_between_points_matrix(junction_boxes)
    adjacency_matrix = create_adjacency_list_based_on_no_nearest_points(n, distance_matrix)
    components = find_connected_components(adjacency_matrix)
+   ans = find_answer_based_on_components(components)
+
+   print(ans)
 
 
 def main():
