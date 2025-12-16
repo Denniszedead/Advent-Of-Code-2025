@@ -58,10 +58,10 @@ def check_which_point_close_the_junction_box(edge_list, junction_boxes):
 
         if not udfs.is_same_set(index_1, index_2):
             udfs.union_set(index_1, index_2)
+            last_index_1 = index_1
+            last_index_2 = index_2
 
-            if udfs.is_all_same_set():
-                get_last_point_that_creates_connection(index_1, index_2, junction_boxes)
-                break
+    get_last_point_that_creates_connection(last_index_1, last_index_2, junction_boxes)
 
 
 class UFDS:
@@ -88,11 +88,6 @@ class UFDS:
                 self.parent[x_parent] = y_parent
                 if self.rank[x_parent] == self.rank[y_parent]:
                     self.rank[y_parent] += 1
-
-    def is_all_same_set(self):
-        for x in range(len(self.parent)):
-            self.find_set(x)
-        return len(set(self.parent)) == 1
 
 
 def main():
