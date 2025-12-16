@@ -1,5 +1,4 @@
 import math
-from functools import reduce
 
 
 def get_junction_boxes(filename):
@@ -23,32 +22,26 @@ def get_euclidean_distance_between_points(point_1, point_2):
     return math.sqrt(sub_total)
 
 
-def get_distance_between_points_matrix(junction_boxes):
+def get_edge_lists(junction_boxes):
+    edge_list = []
     no_junction_boxes = len(junction_boxes)
-    distance_matrix = [[None for _ in range(no_junction_boxes)] for _ in range(no_junction_boxes)]
 
-    for i in range(no_junction_boxes):
-        for j in range(i + 1, no_junction_boxes):
-            point_1 = junction_boxes[i]
-            point_2 = junction_boxes[j]
-            distance_between_points = get_euclidean_distance_between_points(point_1, point_2)
-            distance_matrix[i][j] = distance_between_points
-            distance_matrix[j][i] = distance_between_points
+    for index_1 in range(no_junction_boxes):
+        for index_2 in range(index_1 + 1, no_junction_boxes):
+            box_1 = junction_boxes[index_1]
+            box_2 = junction_boxes[index_2]
+            distance = get_euclidean_distance_between_points(box_1, box_2)
 
-    return distance_matrix
+            edge_list.append((index_1, index_2, distance))
+
+    edge_list.sort(key=lambda x: x[2])
+
+    return edge_list
 
 
-def create_adjacency_list_based_on_no_nearest_points(n, distance_matrix):
-    distances_between_points_arr = []
-
-    for i in range(len(distance_matrix)):
-        for j in range(i + 1, len(distance_matrix[i])):
-            distances_between_points_arr.append((i, j, distance_matrix[i][j]))
-
-    distances_between_points_arr.sort(key=lambda x: x[2])
-    selected_distances_between_points = distances_between_points_arr[:n]
-
-    adjacency_matrix = {i: [] for i in range(len(distance_matrix))}
+def create_adjacency_list_based_on_no_nearest_points(n, junction_boxes, edge_list):
+    selected_distances_between_points = edge_list[:n]
+    adjacency_matrix = {i: [] for i in range(len(junction_boxes))}
     for distance_between_points in selected_distances_between_points:
         point_1, point_2, distance = distance_between_points
 
@@ -101,8 +94,8 @@ def find_answer_based_on_components(components):
 
 
 def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
-   distance_matrix = get_distance_between_points_matrix(junction_boxes)
-   adjacency_matrix = create_adjacency_list_based_on_no_nearest_points(n, distance_matrix)
+   edge_list = get_edge_lists(junction_boxes)
+   adjacency_matrix = create_adjacency_list_based_on_no_nearest_points(n, junction_boxes, edge_list)
    components = find_connected_components(adjacency_matrix)
    ans = find_answer_based_on_components(components)
 
