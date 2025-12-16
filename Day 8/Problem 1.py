@@ -27,12 +27,11 @@ def get_distance_between_points_matrix(junction_boxes):
 
     for i in range(no_junction_boxes):
         for j in range(i + 1, no_junction_boxes):
-            if i != j:
-                point_1 = junction_boxes[i]
-                point_2 = junction_boxes[j]
-                distance_between_points = get_euclidean_distance_between_points(point_1, point_2)
-                distance_matrix[i][j] = distance_between_points
-                distance_matrix[j][i] = distance_between_points
+            point_1 = junction_boxes[i]
+            point_2 = junction_boxes[j]
+            distance_between_points = get_euclidean_distance_between_points(point_1, point_2)
+            distance_matrix[i][j] = distance_between_points
+            distance_matrix[j][i] = distance_between_points
 
     return no_junction_boxes
 
