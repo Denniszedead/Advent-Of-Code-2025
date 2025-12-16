@@ -26,7 +26,7 @@ def get_distance_between_points_matrix(junction_boxes):
     distance_matrix = [[None for _ in range(no_junction_boxes)] for _ in range(no_junction_boxes)]
 
     for i in range(no_junction_boxes):
-        for j in range(no_junction_boxes):
+        for j in range(i + 1, no_junction_boxes):
             if i != j:
                 point_1 = junction_boxes[i]
                 point_2 = junction_boxes[j]
