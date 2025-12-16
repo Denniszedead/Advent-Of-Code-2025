@@ -36,19 +36,45 @@ def get_edge_lists(junction_boxes):
 
     return edge_list
 
-def check_which_point_close_the_junction_box(edge_list, junction_box):
-    no_vertexes = len(junction_box)
+def check_which_point_close_the_junction_box(edge_list, junction_boxes):
+    no_vertexes = len(junction_boxes)
     tree = []
+    union_set = UFDS(no_vertexes)
 
     for edge in edge_list:
         index_1, index_2, weight = edge
 
 
+class UFDS:
+    def __init__(self, no_vertices):
+        self.parent = [x for x in range(no_vertices)]
+        self.rank = [0 for _ in range(no_vertices)]
+
+    def find_set(self, vertice_no):
+        if self.parent[vertice_no] != vertice_no:
+            self.parent[vertice_no] = self.find_set(self.parent[vertice_no])
+        return self.parent[vertice_no]
+
+    def is_same_set(self, x, y):
+        return self.find_set(x) == self.find_set(y)
+
+    def union_set(self, x, y):
+        if not self.is_same_set(x, y):
+            x_parent = self.find_set(x)
+            y_parent = self.find_set(y)
+
+            if self.rank[x_parent] > self.rank[y_parent]:
+                self.parent[y_parent] = x_parent
+            else:
+                self.parent[x_parent] = y_parent
+                if self.rank[x_parent] == self.rank[y_parent]:
+                    self.rank[y_parent] += 1
 
 
 def main():
     junction_boxes = get_junction_boxes('input/sample')
-    edge_lists = get_edge_lists(junction_boxes)
+    edge_list = get_edge_lists(junction_boxes)
+    check_which_point_close_the_junction_box(edge_list, junction_boxes)
 
 if __name__ == "__main__":
     main()
