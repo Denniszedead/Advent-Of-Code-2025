@@ -36,8 +36,30 @@ def get_distance_between_points_matrix(junction_boxes):
     return distance_matrix
 
 
+def create_adjacency_list_based_on_no_nearest_points(n, distance_matrix):
+    distances_between_points_arr = []
+
+    for i in range(len(distance_matrix)):
+        for j in range(i + 1, len(distance_matrix[i])):
+            distances_between_points_arr.append((i, j, distance_matrix[i][j]))
+
+    distances_between_points_arr.sort(key=lambda x: x[2])
+    selected_distances_between_points = distances_between_points_arr[:n]
+
+    adjacency_matrix = {i: [] for i in range(len(distance_matrix))}
+    for distance_between_points in selected_distances_between_points:
+        point_1, point_2, distance = distance_between_points
+
+        adjacency_matrix[point_1].append(point_2)
+        adjacency_matrix[point_2].append(point_1)
+
+
+    return adjacency_matrix
+
+
 def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
    distance_matrix = get_distance_between_points_matrix(junction_boxes)
+   adjacency_matrix = create_adjacency_list_based_on_no_nearest_points(n, distance_matrix)
 
 
 def main():
