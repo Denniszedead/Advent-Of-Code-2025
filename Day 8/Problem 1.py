@@ -1,6 +1,5 @@
 import math
 
-
 def get_junction_boxes(filename):
     junction_boxes = []
 
@@ -22,8 +21,23 @@ def get_euclidean_distance_between_points(point_1, point_2):
     return math.sqrt(sub_total)
 
 
+def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
+    no_junction_boxes = len(junction_boxes)
+    distance_matrix = [[None for _ in range(no_junction_boxes)] for _ in range(no_junction_boxes)]
+
+    for i in range(no_junction_boxes):
+        for j in range(no_junction_boxes):
+            if i != j:
+                point_1 = junction_boxes[i]
+                point_2 = junction_boxes[j]
+                distance_matrix[i][j] = get_euclidean_distance_between_points(point_1, point_2)
+
+    print(distance_matrix)
+
+
 def main():
     junction_boxes = get_junction_boxes('input/sample')
+    get_closest_n_pairs_of_junction_boxes(10, junction_boxes)
 
 
 if __name__ == '__main__':
