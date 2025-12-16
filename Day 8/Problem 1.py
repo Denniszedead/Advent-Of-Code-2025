@@ -53,7 +53,6 @@ def create_adjacency_list_based_on_no_nearest_points(n, distance_matrix):
         adjacency_matrix[point_1].append(point_2)
         adjacency_matrix[point_2].append(point_1)
 
-
     return adjacency_matrix
 
 
