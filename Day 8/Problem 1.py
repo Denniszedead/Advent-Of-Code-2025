@@ -110,8 +110,8 @@ def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
 
 
 def main():
-    junction_boxes = get_junction_boxes('input/sample')
-    get_closest_n_pairs_of_junction_boxes(10, junction_boxes)
+    junction_boxes = get_junction_boxes('input/input')
+    get_closest_n_pairs_of_junction_boxes(1000, junction_boxes)
 
 
 if __name__ == '__main__':
