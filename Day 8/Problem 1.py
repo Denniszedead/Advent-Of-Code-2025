@@ -33,7 +33,7 @@ def get_distance_between_points_matrix(junction_boxes):
             distance_matrix[i][j] = distance_between_points
             distance_matrix[j][i] = distance_between_points
 
-    return no_junction_boxes
+    return distance_matrix
 
 
 def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
