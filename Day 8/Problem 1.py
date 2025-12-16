@@ -56,9 +56,39 @@ def create_adjacency_list_based_on_no_nearest_points(n, distance_matrix):
     return adjacency_matrix
 
 
+def find_component_based_on_starting_point(starting_point, adjacency_matrix, visited_arr):
+    component = [starting_point]
+    queue = [starting_point]
+    visited_arr[starting_point] = True
+
+    while queue:
+        selected_point = queue.pop()
+
+        for neighbour in adjacency_matrix[selected_point]:
+            if not visited_arr[neighbour]:
+                visited_arr[neighbour] = True
+                component.append(neighbour)
+                queue.append(neighbour)
+
+    return component
+
+
+def find_connected_components(adjacency_matrix):
+    visited_arr = [False for _ in range(len(adjacency_matrix))]
+    components = []
+
+    for i, visited in enumerate(visited_arr):
+        if not visited:
+            component = find_component_based_on_starting_point(i, adjacency_matrix, visited_arr)
+            components.append(component)
+
+    return components
+
+
 def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
    distance_matrix = get_distance_between_points_matrix(junction_boxes)
    adjacency_matrix = create_adjacency_list_based_on_no_nearest_points(n, distance_matrix)
+   components = find_connected_components(adjacency_matrix)
 
 
 def main():
