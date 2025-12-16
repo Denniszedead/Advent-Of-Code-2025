@@ -21,7 +21,7 @@ def get_euclidean_distance_between_points(point_1, point_2):
     return math.sqrt(sub_total)
 
 
-def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
+def get_distance_between_points_matrix(junction_boxes):
     no_junction_boxes = len(junction_boxes)
     distance_matrix = [[None for _ in range(no_junction_boxes)] for _ in range(no_junction_boxes)]
 
@@ -30,9 +30,15 @@ def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
             if i != j:
                 point_1 = junction_boxes[i]
                 point_2 = junction_boxes[j]
-                distance_matrix[i][j] = get_euclidean_distance_between_points(point_1, point_2)
+                distance_between_points = get_euclidean_distance_between_points(point_1, point_2)
+                distance_matrix[i][j] = distance_between_points
+                distance_matrix[j][i] = distance_between_points
 
-    print(distance_matrix)
+    return no_junction_boxes
+
+
+def get_closest_n_pairs_of_junction_boxes(n, junction_boxes):
+   distance_matrix = get_distance_between_points_matrix(junction_boxes)
 
 
 def main():
