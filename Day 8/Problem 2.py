@@ -89,6 +89,11 @@ class UFDS:
                 if self.rank[x_parent] == self.rank[y_parent]:
                     self.rank[y_parent] += 1
 
+    def is_all_same_set(self):
+        for x in range(len(self.parent)):
+            self.find_set(x)
+        return len(set(self.parent)) == 1
+
 
 def main():
     junction_boxes = get_junction_boxes('input/input')
