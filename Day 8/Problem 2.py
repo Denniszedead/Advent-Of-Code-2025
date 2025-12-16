@@ -36,13 +36,35 @@ def get_edge_lists(junction_boxes):
 
     return edge_list
 
+def is_all_vertexes_visited(xs):
+    for x in xs:
+        if not x:
+            return False
+
+    return True
+
+def get_last_point_that_creates_connection(index_1, index_2, junction_boxes):
+    (x1, y1, z1) = junction_boxes[index_1]
+    (x2, y2, z2) = junction_boxes[index_2]
+
+    print(x1 * x2)
+
 def check_which_point_close_the_junction_box(edge_list, junction_boxes):
     no_vertexes = len(junction_boxes)
-    tree = []
-    union_set = UFDS(no_vertexes)
+    visited = [False for _ in range(no_vertexes)]
+    udfs = UFDS(no_vertexes)
 
     for edge in edge_list:
         index_1, index_2, weight = edge
+
+        if not udfs.is_same_set(index_1, index_2):
+            udfs.union_set(index_1, index_2)
+            visited[index_1] = True
+            visited[index_2] = True
+
+            if is_all_vertexes_visited(visited):
+                get_last_point_that_creates_connection(index_1, index_2, junction_boxes)
+                break
 
 
 class UFDS:
