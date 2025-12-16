@@ -51,7 +51,6 @@ def get_last_point_that_creates_connection(index_1, index_2, junction_boxes):
 
 def check_which_point_close_the_junction_box(edge_list, junction_boxes):
     no_vertexes = len(junction_boxes)
-    visited = [False for _ in range(no_vertexes)]
     udfs = UFDS(no_vertexes)
 
     for edge in edge_list:
@@ -59,10 +58,8 @@ def check_which_point_close_the_junction_box(edge_list, junction_boxes):
 
         if not udfs.is_same_set(index_1, index_2):
             udfs.union_set(index_1, index_2)
-            visited[index_1] = True
-            visited[index_2] = True
 
-            if is_all_vertexes_visited(visited):
+            if udfs.is_all_same_set():
                 get_last_point_that_creates_connection(index_1, index_2, junction_boxes)
                 break
 
