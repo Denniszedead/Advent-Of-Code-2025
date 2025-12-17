@@ -16,6 +16,8 @@ def get_area_based_on_points(point_1, point_2):
     x1, y1 = point_1
     x2, y2 = point_2
 
+    # +1 to both the width and height as when calculating the width and height, need to include the row and col
+    # of the starting point
     width = abs(x2 - x1) + 1
     height = abs(y2 - y1) + 1
 
