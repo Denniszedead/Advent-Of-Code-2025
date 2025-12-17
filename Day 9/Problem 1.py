@@ -16,8 +16,8 @@ def get_area_based_on_points(point_1, point_2):
     x1, y1 = point_1
     x2, y2 = point_2
 
-    width = abs(x2 - x1)
-    height = abs(y2 - y1)
+    width = abs(x2 - x1) + 1
+    height = abs(y2 - y1) + 1
 
     return width * height
 
@@ -39,7 +39,7 @@ def get_largest_area(points):
 
 
 def main():
-    points = get_points_from_file('input/sample')
+    points = get_points_from_file('input/input')
     get_largest_area(points)
 
 
